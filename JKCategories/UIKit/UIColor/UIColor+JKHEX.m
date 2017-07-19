@@ -21,6 +21,8 @@ CGFloat jk_colorComponentFrom(NSString *string, NSUInteger start, NSUInteger len
     return [UIColor jk_colorWithHex:hex andAlpha:1];
 }
 + (UIColor *)jk_colorWithHex:(UInt32)hex andAlpha:(CGFloat)alpha{
+    //右移 进行按位与运算
+    //hex化为16进制右移  除以2的16次方 与 1111 1111 进行按位与计算
     return [UIColor colorWithRed:((hex >> 16) & 0xFF)/255.0
                            green:((hex >> 8) & 0xFF)/255.0
                             blue:(hex & 0xFF)/255.0

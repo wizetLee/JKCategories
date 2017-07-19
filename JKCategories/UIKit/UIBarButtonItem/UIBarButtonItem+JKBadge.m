@@ -36,22 +36,29 @@ NSString const *jk_UIBarButtonItem_badgeValueKey = @"jk_UIBarButtonItem_badgeVal
         defaultOriginX = superview.frame.size.width - self.jk_badge.frame.size.width/2;
         // Avoids badge to be clipped when animating its scale
         superview.clipsToBounds = NO;
+        
     } else if ([self respondsToSelector:@selector(view)] && [(id)self view]) {
         superview = [(id)self view];
-        defaultOriginX = superview.frame.size.width - self.jk_badge.frame.size.width;
+        if ([superview isKindOfClass:[UIView class]]) {
+            defaultOriginX = superview.frame.size.width - self.jk_badge.frame.size.width;
+        }
     }
-    [superview addSubview:self.jk_badge];
     
-    // Default design initialization
-    self.jk_badgeBGColor   = [UIColor redColor];
-    self.jk_badgeTextColor = [UIColor whiteColor];
-    self.jk_badgeFont      = [UIFont systemFontOfSize:12.0];
-    self.jk_badgePadding   = 6;
-    self.jk_badgeMinSize   = 8;
-    self.jk_badgeOriginX   = defaultOriginX;
-    self.jk_badgeOriginY   = -4;
-    self.jk_shouldHideBadgeAtZero = YES;
-    self.jk_shouldAnimateBadge = YES;
+    if ([superview isKindOfClass:[UIView class]]) {
+        [superview addSubview:self.jk_badge];
+        
+        // Default design initialization
+        self.jk_badgeBGColor   = [UIColor redColor];
+        self.jk_badgeTextColor = [UIColor whiteColor];
+        self.jk_badgeFont      = [UIFont systemFontOfSize:12.0];
+        self.jk_badgePadding   = 6;
+        self.jk_badgeMinSize   = 8;
+        self.jk_badgeOriginX   = defaultOriginX;
+        self.jk_badgeOriginY   = -4;
+        self.jk_shouldHideBadgeAtZero = YES;
+        self.jk_shouldAnimateBadge = YES;
+    }
+    
 }
 
 #pragma mark - Utility methods
@@ -156,11 +163,20 @@ NSString const *jk_UIBarButtonItem_badgeValueKey = @"jk_UIBarButtonItem_badgeVal
 -(UILabel*)jk_badge {
     UILabel* lbl = objc_getAssociatedObject(self, &jk_UIBarButtonItem_badgeKey);
     if(lbl==nil) {
+        /*
+         * 手动添加一个label
+         */
         lbl = [[UILabel alloc] initWithFrame:CGRectMake(self.jk_badgeOriginX, self.jk_badgeOriginY, 20, 20)];
-        [self setJk_badge:lbl];
-        [self jk_badgeInit];
-        [self.customView addSubview:lbl];
         lbl.textAlignment = NSTextAlignmentCenter;
+        
+        [self setJk_badge:lbl];
+        
+        /**
+         *  放置这个label
+         */
+        [self jk_badgeInit];
+        
+        [self.customView addSubview:lbl];
     }
     return lbl;
 }

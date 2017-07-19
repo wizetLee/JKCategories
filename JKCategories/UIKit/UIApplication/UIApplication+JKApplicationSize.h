@@ -11,5 +11,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UIApplication (JKApplicationSize)
+/**
+ *  计算应用大小 无算上tmp
+ *
+ *  @return 应用大小str
+ */
 - (NSString *)jk_applicationSize;
+
 @end

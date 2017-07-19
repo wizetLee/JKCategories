@@ -11,7 +11,7 @@
 @interface UIApplication (JKNetworkActivityIndicator)
 
 /*
- This category will automatically keep track of concurrent network activity and display the network activity indicator accordingly.
+ This category will automatically keep track of concurrent （并发） network activity and display the network activity indicator accordingly.
  */
 
 /// Tell the application that network activity has begun. The network activity indicator will then be shown.

@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "JKCategories.h"
-
 #import "NSData+JKGzip.h"
 @interface RootViewController ()
 
@@ -101,8 +100,7 @@
                };
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     [self.tableView reloadData];
- 
-    
+   
 }
 
 #pragma mark - Table view data source

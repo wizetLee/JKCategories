@@ -72,7 +72,6 @@
 
 - (void)setJk_submitting:(NSNumber *)submitting {
     objc_setAssociatedObject(self, @selector(setJk_submitting:), submitting, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
 }
 
 - (UIActivityIndicatorView *)jk_spinnerView {
@@ -85,7 +84,6 @@
 
 - (UIView *)jk_modalView {
     return objc_getAssociatedObject(self, @selector(setJk_modalView:));
-
 }
 
 - (void)setJk_modalView:(UIView *)modalView {

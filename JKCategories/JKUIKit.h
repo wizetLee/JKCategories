@@ -14,7 +14,7 @@
 #import "UIApplication+JKApplicationSize.h"
 #import "UIApplication+JKKeyboardFrame.h"
 #import "UIApplication+JKNetworkActivityIndicator.h"
-#import "UIApplication+JKPermissions.h"
+#import "UIApplication+JKPermissions.h"//权限  蓝牙 麦克风  传感  相册等
 #import "UIBarButtonItem+JKAction.h"
 #import "UIBarButtonItem+JKBadge.h"
 #import "UIBezierPath+JKBasicShapes.h"
@@ -25,7 +25,7 @@
 #import "UIButton+JKBackgroundColor.h"
 #import "UIButton+JKBlock.h"
 #import "UIButton+JKCountDown.h"
-#import "UIButton+JKImagePosition.h"
+#import "UIButton+JKImagePosition.h"//关于位置是否有更变？
 #import "UIButton+JKIndicator.h"
 #import "UIButton+JKMiddleAligning.h"
 #import "UIButton+JKSubmitting.h"

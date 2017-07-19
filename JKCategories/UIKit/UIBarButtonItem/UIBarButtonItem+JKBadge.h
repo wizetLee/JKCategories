@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ *   badge: 手动添加一个label  对label修饰
+ */
 @interface UIBarButtonItem (JKBadge)
 
 @property (strong, atomic) UILabel *jk_badge;

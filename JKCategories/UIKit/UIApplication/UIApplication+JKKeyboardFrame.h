@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  键盘的frame情况   缺点  不可以直接在获取一个回调
+ */
 @interface UIApplication (JKKeyboardFrame)
+
 - (CGRect)jk_keyboardFrame;
+
 @end

@@ -156,6 +156,12 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
 
 
 #pragma mark - Request permissions
+/**
+ *  日历
+ *
+ *  @param accessGranted <#accessGranted description#>
+ *  @param accessDenied  <#accessDenied description#>
+ */
 -(void)jk_requestAccessToCalendarWithSuccess:(void(^)())accessGranted andFailure:(void(^)())accessDenied {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
@@ -169,6 +175,12 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
+/**
+ *  通讯录
+ *
+ *  @param accessGranted <#accessGranted description#>
+ *  @param accessDenied  <#accessDenied description#>
+ */
 -(void)jk_requestAccessToContactsWithSuccess:(void(^)())accessGranted andFailure:(void(^)())accessDenied {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     if(addressBook) {
@@ -184,6 +196,12 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }
 }
 
+/**
+ *  麦克风
+ *
+ *  @param accessGranted <#accessGranted description#>
+ *  @param accessDenied  <#accessDenied description#>
+ */
 -(void)jk_requestAccessToMicrophoneWithSuccess:(void(^)())accessGranted andFailure:(void(^)())accessDenied {
     AVAudioSession *session = [[AVAudioSession alloc] init];
     [session requestRecordPermission:^(BOOL granted) {
@@ -197,6 +215,11 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
+/**
+ *  Core Motion可以让开发者从各个内置传感器那里获取未经修改的传感数据，并观测或响应设备各种运动和角度变化。这些传感器包括陀螺仪、加速器和磁力仪(罗盘)。
+ *
+ *  @param accessGranted <#accessGranted description#>
+ */
 -(void)jk_requestAccessToMotionWithSuccess:(void(^)())accessGranted {
     CMMotionActivityManager *motionManager = [[CMMotionActivityManager alloc] init];
     NSOperationQueue *motionQueue = [[NSOperationQueue alloc] init];
@@ -206,6 +229,12 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
+/**
+ *  ALAssetsLibrary
+ *
+ *  @param accessGranted <#accessGranted description#>
+ *  @param accessDenied  <#accessDenied description#>
+ */
 -(void)jk_requestAccessToPhotosWithSuccess:(void(^)())accessGranted andFailure:(void(^)())accessDenied {
     ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -215,6 +244,12 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
+/**
+ *  事件提醒开发包（EventKit）由事件库、事件源、日历和事件/提醒组成，他们的关系是：事件库用于直接操作日历数据库，日历数据库中的数据按事件源、日历和事件/提醒三级进行分类组织。每个事件源对应一个准帐户，该帐户下可以有多个日历，日历分两类，一类是用于存储事件的日历，一类是用于存储提醒的日历。这里所说的存储，实际就是分类，反过来的，根据子项对父项进行分类。就如两口缸，一口装水，一口沙子一样，这个缸就是上面提及的日历，水相当于事件，沙子相当于提醒。一户人家的院子里可以摆好多口缸，这个院子就相当于帐户，有两个默认帐户，一个是Local，一个是Other。帐户的类型，还可能有iCloud或Gmail帐号等，一般是邮箱附带的，所以就默认对应着该邮箱地址了。就像 大户人家的总管，管好每户的院子，还有每个院子里的缸一样，事件库直接管理所有的帐户和日历，还有日历下的事件或提醒。管理包括增加、修改、查询、删除（CURD）。
+ *
+ *  @param accessGranted <#accessGranted description#>
+ *  @param accessDenied  <#accessDenied description#>
+ */
 -(void)jk_requestAccessToRemindersWithSuccess:(void(^)())accessGranted andFailure:(void(^)())accessDenied {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {

@@ -36,8 +36,9 @@
     
     UIFontDescriptor * fontDescriptor = nil;
     
+    //UIFont  动态决议
     if([[UIFont class] resolveClassMethod:@selector(preferredFontForTextStyle:)]){
-        
+       
         fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:style];
         
     }else{

@@ -19,8 +19,8 @@
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
 
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextTranslateCTM(context, 0.0, size.height);//矩阵
+    CGContextScaleCTM(context, 1.0, -1.0);//矩阵翻转
     CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, size.width, size.height), self.CGImage);
 
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -43,6 +43,7 @@
     CGFloat maxImageHeight = CGRectGetHeight(self.frame) - titleSize.height - spacing * 2;
     CGFloat maxImageWidth = CGRectGetWidth(self.frame);
     UIImage *newImage = nil;
+    //ceilf(x) 计算值的上限。向上取整 进1
     if (imageSize.width > ceilf(maxImageWidth)) {
         CGFloat ratio = maxImageWidth / imageSize.width;
         newImage = [self.imageView.image jk_MiddleAlignedButtonImageScaleToSize:CGSizeMake(maxImageWidth, imageSize.height * ratio)];

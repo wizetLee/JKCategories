@@ -32,14 +32,19 @@ static NSString *UIAlertViewKey = @"UIAlertViewKey";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:cancelButtonName otherButtonTitles: otherButtonTitles, nil];
     NSString *other = nil;
-    va_list args;
+    
+    //负责处理otherButtonTitles
+    va_list args;//一个指针
     if (otherButtonTitles) {
-        va_start(args, otherButtonTitles);
-        while ((other = va_arg(args, NSString*))) {
-            [alert addButtonWithTitle:other];
+        va_start(args, otherButtonTitles);//初始化 使指针得指向 otherButtonTitles
+        while ((other = va_arg(args, NSString*))) {//移动指针 使其指向像下一个对象
+            if ([other isKindOfClass:[NSString class]]) {//类型判定
+                [alert addButtonWithTitle:other];
+            }
         }
-        va_end(args);
+        va_end(args);//关闭指针
     }
+    
     alert.delegate = alert;
     [alert show];
     alert.jk_alertViewCallBackBlock = alertViewCallBackBlock;
@@ -48,11 +53,12 @@ static NSString *UIAlertViewKey = @"UIAlertViewKey";
 
 - (void)setJk_alertViewCallBackBlock:(UIAlertViewJKCallBackBlock)alertViewCallBackBlock {
     
-    [self willChangeValueForKey:@"callbackBlock"];
+    [self willChangeValueForKey:@"callbackBlock"];//负责发通知给KVO
     objc_setAssociatedObject(self, &UIAlertViewKey, alertViewCallBackBlock, OBJC_ASSOCIATION_COPY);
-    [self didChangeValueForKey:@"callbackBlock"];
+    [self didChangeValueForKey:@"callbackBlock"];//负责发通知给KVO
 }
 
+//关联block
 - (UIAlertViewJKCallBackBlock)jk_alertViewCallBackBlock {
     
     return objc_getAssociatedObject(self, &UIAlertViewKey);

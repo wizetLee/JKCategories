@@ -13,6 +13,7 @@
  *  @brief  UIBezierPath转成SVG
  *
  *  @return SVG
+ * （可缩放矢量图形）可缩放矢量图形是基于可扩展标记语言（标准通用标记语言的子集），用于描述二维矢量图形的一种图形格式。它由万维网联盟制定，是一个开放标准。
  */
 - (NSString*)jk_SVGString;
 @end
